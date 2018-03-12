@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 
 set(CMAKE_CXX_STANDARD 11)
 
-project("Program-parameters-lib")
+project("light-parameters-parser")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -DDEBUG")
@@ -24,9 +24,12 @@ macro(export_libs)
         CACHE INTERNAL "${PROJECT_NAME}: used and exported libs" FORCE)
 endmacro()
 
-#add_subdirectory(ppars)
-#add_subdirectory(3rdparty/googletest)
-# To enable ctest usage
-enable_testing()
-add_subdirectory(tests)
 
+add_subdirectory(lightpars)
+add_subdirectory(examples)
+# To enable ctest usage
+if (EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/googletest")
+    enable_testing()
+    add_subdirectory(3rdparty/googletest)
+    add_subdirectory(tests)
+endif()

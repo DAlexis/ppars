@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(ppars-tests)
+project(lightpars-tests)
 
 include_directories (
     ${gtest_SOURCE_DIR}/include
+    ${lightpars_SOURCE_DIR}
 )
 
 set(EXE_SOURCES
-    ppars-tests.cpp
+    lightpars-tests.cpp
 )
 
 add_executable(${PROJECT_NAME} ${EXE_SOURCES})
@@ -15,8 +16,8 @@ add_executable(${PROJECT_NAME} ${EXE_SOURCES})
 target_link_libraries (${PROJECT_NAME}
     gtest
     gtest_main
-    ${cic_LIBRARY}
+    lightpars
 )
 
-add_test(NAME ppars_testing
+add_test(NAME ${PROJECT_NAME}
          COMMAND ${PROJECT_NAME})
